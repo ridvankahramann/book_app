@@ -1,0 +1,18 @@
+{
+  "members": [ { "name": "Ebubekir Tabak", "memberId":  "0012" } ],
+  "writers": [ { "writerName": "Daniel Defoe", "writerId": 12 } ],
+  "books": [
+    {
+      "name": "Robinson Crusoe",
+      "writer": { "writerName": "Daniel Defoe", "writerId": 12 },
+      "page": 406,
+      "holders": [
+        {
+          "memberId": 12,
+          "dueData": "timestamp"
+        }
+      ],
+      "piece": 3
+    }
+  ]
+}{"books":[{"holders":[{"dueData":"Mon Jan 17 20:19:57 TRT 2022","memberId":12}],"name":"aa","page":44,"piece":55,"writer":{"writerId":0,"writerName":"Daniel Defoe"}}],"members":[{"memberId":"1","name":"Ridvan Kahraman"}],"writers":[{"writerId":12,"writerName":"Daniel Defoe"}]}

@@ -1,0 +1,18 @@
+{
+  "members": [ { "name": "Ebubekir Tabak", "memberId":  "0012" } ],
+  "writers": [ { "writerName": "Daniel Defoe", "writerId": 12 } ],
+  "books": [
+    {
+      "name": "Robinson Crusoe",
+      "writer": { "writerName": "Daniel Defoe", "writerId": 12 },
+      "page": 406,
+      "holders": [
+        {
+          "memberId": 12,
+          "dueData": "timestamp"
+        }
+      ],
+      "piece": 3
+    }
+  ]
+}
