@@ -5,11 +5,11 @@ data class Model(
 )
 
 data class Book(
-    val holders: List<Holder>,
-    val name: String,
-    val page: Int,
-    val piece: Int,
-    val writer: Writer
+    var holders: List<Holder>,
+    var name: String,
+    var page: Int,
+    var piece: Int,
+    var writer: Writer?
 )
 
 data class Member(
