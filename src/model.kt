@@ -1,7 +1,7 @@
 data class Model(
     val books: List<Book>,
     val members: List<Member>,
-    val writers: List<Writers>
+    val writers: List<Writer>
 )
 
 data class Book(
@@ -15,11 +15,6 @@ data class Book(
 data class Member(
     val memberId: String,
     val name: String
-)
-
-data class Writers(
-    val writerId: Int,
-    val writerName: String
 )
 
 data class Holder(
