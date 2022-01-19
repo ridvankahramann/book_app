@@ -20,9 +20,9 @@ public class Global() {
 fun main() {
     Global()
     print("\n 1.kitap ekle\n 2.kitap teslim et\n 3.kitap teslim al\n 4.kitap ara \n 5.kitapları listele\n")
-    var inputnumber:Int = readLine()!!.toInt()
-    when(inputnumber){
-        1->book_add()
+    val inputNumber: Int = readLine()!!.toInt()
+    when(inputNumber){
+        1->addNewBook()
         else -> {
             print("yok")
         }
