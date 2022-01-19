@@ -49,3 +49,19 @@ fun book_add(){
         val writerId = Random().nextInt(0, 100)
     } }
 }
+
+fun saveModelToFile(): Boolean {
+    var isSuccess = true
+    try {
+        val jsonText: String = gson.toJson(model, Model::class.java)
+        File(Global.filePath).writeText(jsonText)
+    } catch (exception: Exception) {
+        print("Model data couldn\'t save: $exception")
+        isSuccess = false
+    } catch (ioException: IOException) {
+       print("Model data couldn\'t save: $ioException")
+        isSuccess = false
+    }
+
+    return isSuccess
+}
