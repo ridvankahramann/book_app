@@ -29,7 +29,9 @@ fun main() {
     }
 }
 
-fun book_add(){
+fun addNewBook(){
+    val holders = listOf<Holder>()
+    val book = Book(holders,"",0, 0, null)
     print("Kitap İsmi\n")
     val name = readLine()!!.toString()
     print("Kitap Sayfa\n")
