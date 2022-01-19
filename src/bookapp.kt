@@ -33,23 +33,23 @@ fun addNewBook(){
     val holders = listOf<Holder>()
     val book = Book(holders,"",0, 0, null)
     print("Kitap İsmi\n")
-    val name = readLine()!!.toString()
+    book.name = readLine()!!.toString()
     print("Kitap Sayfa\n")
-    val page = readLine()!!.toInt()
+    book.page = readLine()!!.toInt()
     print("Kitap Fiyatı\n")
-    val piece = readLine()!!.toInt()
+    book.piece = readLine()!!.toInt()
     print("Yazar İsmi\n")
     val writerName = readLine()!!.toString()
-    model.writers.forEach { writer -> if(writer.writerName == writerName){
-        var holders = listOf<Holder>()
-        var books = Book(holders,name,page,piece,writer)
-        model.books.toMutableList().add(books)
-        GsonBuilder().setPrettyPrinting().create()
-        var modeltext: String = gson.toJson(model,Model::class.java)
-        File(Global.url).writeText(modeltext)
-    }else{
-        val writerId = Random().nextInt(0, 100)
-    } }
+    model.writers.forEach { writer -> if(writer.writerName == writerName) {
+            (model.books as ArrayList).add(book)
+            saveModelToFile()
+        } else {
+            val writerId = Random().nextInt(0, 100)
+            book.writer = Writer(writerId, writerName)
+            (model.books as ArrayList).add(book)
+            saveModelToFile()
+        }
+    }
 }
 
 fun saveModelToFile(): Boolean {
