@@ -9,10 +9,10 @@ import java.util.*
 public class Global() {
     companion object {
         @JvmField
-        var gson = Gson()
-        var url = "C:\\Users\\Ridvan\\IdeaProjects\\book_app\\src\\app.json"
-        var lines = File(url).readText(Charsets.UTF_8)
-        var model: Model = Gson().fromJson(lines, Model::class.java)
+        var gson = GsonBuilder().setPrettyPrinting().create()
+        var filePath = Utils().getCurrentPath() + "/assets/app.json"
+        var jsonText = File(filePath).readText(Charsets.UTF_8)
+        var model: Model = Gson().fromJson(jsonText, Model::class.java)
     }
 }
 
