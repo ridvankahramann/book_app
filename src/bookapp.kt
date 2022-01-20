@@ -33,7 +33,6 @@ fun main() {
 
 fun addNewBook(){
     val holders = listOf<Holder>()
-    val book = Book(holders,"",0, 0, null)
     print("Kitap İsmi\n")
     val name = readLine()!!.toString()
     print("Kitap Sayfa\n")
@@ -44,27 +43,26 @@ fun addNewBook(){
     val writerName = readLine()!!.toString()
     var filtersBooks = model.books.filter { book -> book.name == name }.size
     model.writers.forEach { writer ->
-        if (writer.writerName == writerName && filtersBooks > 0){
-            for (i in model.books.indices){
-                var holders = listOf<Holder>()
-                var book = Book(holders,model.books[i].name,model.books[i].page,model.books[i].piece++,writer)
+        if (writer.writerName == writerName && filtersBooks > 0) {
+            for (i in model.books.indices) {
+                val book = Book(holders,model.books[i].name,model.books[i].page,model.books[i].piece++,writer)
+                (model.books as ArrayList).add(book)
                 GsonBuilder().setPrettyPrinting().create()
                 saveModelToFile()
             }
         }
-        if(writer.writerName == writerName){
-            var holders = listOf<Holder>()
-            var books = Book(holders,name,page,piece,writer)
-            model.books.toMutableList().add(books)
+        if (writer.writerName == writerName) {
+            val book = Book(holders,name,page,piece,writer)
+            (model.books as ArrayList).add(book)
             GsonBuilder().setPrettyPrinting().create()
             saveModelToFile()
-        }else{
-            var holders = listOf<Holder>()
-            var books = Book(holders,name,page,piece,writer)
-            model.books.toMutableList().add(books)
+        } else {
+            val book = Book(holders,name,page,piece,writer)
+            (model.books as ArrayList).add(book)
             GsonBuilder().setPrettyPrinting().create()
             saveModelToFile()
-        } }
+        }
+    }
 }
 
 fun deliverBook(){
