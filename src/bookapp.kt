@@ -55,13 +55,13 @@ fun addNewBook(){
         if(writer.writerName == writerName){
             var holders = listOf<Holder>()
             var books = Book(holders,name,page,piece,writer)
-            var model = model.books.toMutableList().add(books)
+            model.books.toMutableList().add(books)
             GsonBuilder().setPrettyPrinting().create()
             saveModelToFile()
         }else{
             var holders = listOf<Holder>()
             var books = Book(holders,name,page,piece,writer)
-            var model = model.books.toMutableList().add(books)
+            model.books.toMutableList().add(books)
             GsonBuilder().setPrettyPrinting().create()
             saveModelToFile()
         } }
