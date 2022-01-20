@@ -4,8 +4,6 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File
 import java.io.IOException
-import java.util.*
-
 
 public class Global() {
     companion object {
@@ -23,6 +21,10 @@ fun main() {
     val inputNumber: Int = readLine()!!.toInt()
     when(inputNumber){
         1->addNewBook()
+        2->deliverBook()
+        3->pickupBook()
+        4->searchBook()
+        5->listBook()
         else -> {
             print("yok")
         }
@@ -40,16 +42,50 @@ fun addNewBook(){
     val piece = readLine()!!.toInt()
     print("Yazar İsmi\n")
     val writerName = readLine()!!.toString()
-    model.writers.forEach { writer -> if(writer.writerName == writerName){
-        var holders = listOf<Holder>()
-        var books = Book(holders,name,page,piece,writer)
-        model.books.toMutableList().add(books)
-        GsonBuilder().setPrettyPrinting().create()
-        var modeltext: String = gson.toJson(model,Model::class.java)
-        File(Global.url).writeText(modeltext)
-    }else{
-        val writerId = Random().nextInt(0, 100)
-    } }
+    var filtersBooks = model.books.filter { book -> book.name == name }.size
+    model.writers.forEach { writer ->
+        if (writer.writerName == writerName && filtersBooks > 0){
+            for (i in model.books.indices){
+                var holders = listOf<Holder>()
+                var book = Book(holders,model.books[i].name,model.books[i].page,model.books[i].piece++,writer)
+                GsonBuilder().setPrettyPrinting().create()
+                saveModelToFile()
+            }
+        }
+        if(writer.writerName == writerName){
+            var holders = listOf<Holder>()
+            var books = Book(holders,name,page,piece,writer)
+            var model = model.books.toMutableList().add(books)
+            GsonBuilder().setPrettyPrinting().create()
+            saveModelToFile()
+        }else{
+            var holders = listOf<Holder>()
+            var books = Book(holders,name,page,piece,writer)
+            var model = model.books.toMutableList().add(books)
+            GsonBuilder().setPrettyPrinting().create()
+            saveModelToFile()
+        } }
+}
+
+fun deliverBook(){
+    print("kitap teslim et")
+}
+
+fun pickupBook(){
+    print("kitap teslim al")
+}
+
+fun searchBook(){
+    print("Kitap İsmi\n")
+    val bookName = readLine()!!.toString()
+    var filter = model.books.filter { it.name == bookName}
+    filter.forEach{print(listOf(it.holders,it.name,it.page,it.piece,it.writer))}
+}
+
+fun listBook(){
+    model.books.forEach{
+        print(listOf(it.holders,it.name,it.page,it.piece,it.writer))
+    }
 }
 
 fun saveModelToFile(): Boolean {
