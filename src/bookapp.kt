@@ -16,7 +16,7 @@ public class Global() {
 }
 
 fun main() {
-    Global()
+//    Global()
     print("\n 1.kitap ekle\n 2.kitap teslim et\n 3.kitap teslim al\n 4.kitap ara \n 5.kitapları listele\n")
     val inputNumber: Int = readLine()!!.toInt()
     when(inputNumber){
@@ -41,15 +41,15 @@ fun addNewBook(){
     val piece = readLine()!!.toInt()
     print("Yazar İsmi\n")
     val writerName = readLine()!!.toString()
-    var filtersBooks = model.books.filter { book -> book.name == name }.size
     model.writers.forEach { writer ->
-        if (writer.writerName == writerName && filtersBooks > 0) {
-            for (i in model.books.indices) {
-                val book = Book(holders,model.books[i].name,model.books[i].page,model.books[i].piece++,writer)
-                (model.books as ArrayList).add(book)
-                GsonBuilder().setPrettyPrinting().create()
+        for (i in model.books.indices) {
+            if (writer.writerName == writerName && model.books[i].name == name) {
+                val index = model.books.indexOf(model.books[i])
+                val book = Book(holders, model.books[i].name, model.books[i].page, model.books[i].piece++, writer)
+                (model.books as ArrayList)[index] = book
                 saveModelToFile()
             }
+            return@forEach
         }
         if (writer.writerName == writerName) {
             val book = Book(holders,name,page,piece,writer)
@@ -66,7 +66,13 @@ fun addNewBook(){
 }
 
 fun deliverBook(){
-    print("kitap teslim et")
+    print("Kullanıcı Id")
+    val userId = readLine()!!.toInt()
+    for (i in model.books.indices){
+        if (model.writers[i].writerId == userId){
+            print(model.books[i])
+        }
+    }
 }
 
 fun pickupBook(){

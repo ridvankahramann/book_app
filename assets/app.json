@@ -3,18 +3,8 @@
     {
       "holders": [],
       "name": "aa",
-      "page": 245,
-      "piece": 28,
-      "writer": {
-        "writerId": 12,
-        "writerName": "Daniel Defoe"
-      }
-    },
-    {
-      "holders": [],
-      "name": "aa",
-      "page": 245,
-      "piece": 28,
+      "page": 44,
+      "piece": 21,
       "writer": {
         "writerId": 12,
         "writerName": "Daniel Defoe"
@@ -33,7 +23,7 @@
   ],
   "members": [
     {
-      "memberId": "0012",
+      "memberId": 12,
       "name": "Ebubekir Tabak"
     }
   ],
