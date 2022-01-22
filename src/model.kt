@@ -13,7 +13,7 @@ data class Book(
 )
 
 data class Member(
-    val memberId: Int,
+    val memberId: String,
     val name: String
 )
 

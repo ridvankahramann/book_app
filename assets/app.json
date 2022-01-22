@@ -32,7 +32,7 @@
     },
     {
       "holders": [],
-      "name": "Fareler ve İnsanlar",
+      "name": "Fareler ve Insanlar",
       "page": 123,
       "piece": 50,
       "writer": {
@@ -43,12 +43,16 @@
   ],
   "members": [
     {
-      "memberId": 12,
+      "memberId": "0012",
       "name": "Ebubekir Tabak"
     },
     {
-      "memberId": 13,
+      "memberId": "0012",
       "name": "Ridvan Kahraman"
+    },
+    {
+      "memberId": "mehmet",
+      "name": "563"
     }
   ],
   "writers": [
