@@ -4,6 +4,9 @@ import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import java.io.File
 import java.io.IOException
+import java.util.*
+import kotlin.collections.ArrayList
+import kotlin.random.Random
 
 public class Global() {
     companion object {
@@ -40,6 +43,7 @@ fun addNewBook(){
     val piece = readLine()!!.toInt()
     print("Yazar İsmi\n")
     val writerName = readLine()!!.toString()
+    val writerId = (0..100).random()
     model.writers.forEach { writer ->
         for (i in model.books.indices) {
             if (writer.writerName == writerName && model.books[i].name == name) {
@@ -47,19 +51,22 @@ fun addNewBook(){
                 val book = Book(holders, model.books[i].name, model.books[i].page, model.books[i].piece++, writer)
                 (model.books as ArrayList)[index] = book
                 saveModelToFile()
+                return@forEach
             }
-            return@forEach
-        }
-        if (writer.writerName == writerName) {
-            val book = Book(holders,name,page,piece,writer)
-            (model.books as ArrayList).add(book)
-            GsonBuilder().setPrettyPrinting().create()
-            saveModelToFile()
-        } else {
-            val book = Book(holders,name,page,piece,writer)
-            (model.books as ArrayList).add(book)
-            GsonBuilder().setPrettyPrinting().create()
-            saveModelToFile()
+            else if (writer.writerName == writerName) {
+                val book = Book(holders,name,page,piece,writer)
+                (model.books as ArrayList).add(book)
+                GsonBuilder().setPrettyPrinting().create()
+                saveModelToFile()
+                return@forEach
+            } else {
+                val writer = Writer(writerId,writerName)
+                val book = Book(holders,name,page,piece,writer)
+                (model.books as ArrayList).add(book)
+                GsonBuilder().setPrettyPrinting().create()
+                saveModelToFile()
+                return@forEach
+            }
         }
     }
 }
@@ -86,7 +93,26 @@ fun deliverBook(){
 }
 
 fun pickupBook(){
-    print("kitap teslim al")
+    for (i in model.books.indices){
+        if(model.members.count() < model.books[i].piece){
+            print("\n")
+            print(model.books[i].name)
+        }
+    }
+    print("\n")
+    print("Teslim almak istediğin kitap")
+    print("\n")
+    for (i in model.books.indices) {
+        var bookdeliver = readLine()!!.toString()
+        if (model.books[i].name == bookdeliver) {
+            print("Kullanıcı isim\n")
+            var holdersname = readLine()!!.toString()
+            var holdersmemberId = (0..1000).random().toString()
+            val holders = Holder(holdersname,holdersmemberId)
+            (model.books[i].holders as ArrayList).add(holders)
+            saveModelToFile()
+        }
+    }
 }
 
 fun searchBook(){

@@ -1,17 +1,27 @@
 {
   "books": [
     {
-      "holders": [ { "name": "Ebubekir Tabak","memberId": "0012"} ],
+      "holders": [
+        {
+          "name": "Ebubekir Tabak",
+          "memberId": "0012"
+        }
+      ],
       "name": "aa",
       "page": 44,
-      "piece": 21,
+      "piece": 20,
       "writer": {
         "writerId": 12,
         "writerName": "Daniel Defoe"
       }
     },
     {
-      "holders": [ { "name": "Ridvan Kahraman", "memberId": "0013"} ],
+      "holders": [
+        {
+          "name": "Ridvan Kahraman",
+          "memberId": "0013"
+        }
+      ],
       "name": "sadasdas",
       "page": 24,
       "piece": 14,
@@ -19,15 +29,25 @@
         "writerId": 12,
         "writerName": "Daniel Defoe"
       }
+    },
+    {
+      "holders": [],
+      "name": "Fareler ve İnsanlar",
+      "page": 123,
+      "piece": 50,
+      "writer": {
+        "writerId": 95,
+        "writerName": "John Steinbeck"
+      }
     }
   ],
   "members": [
     {
-      "memberId": "0012",
+      "memberId": 12,
       "name": "Ebubekir Tabak"
     },
     {
-      "memberId": "0013",
+      "memberId": 13,
       "name": "Ridvan Kahraman"
     }
   ],
