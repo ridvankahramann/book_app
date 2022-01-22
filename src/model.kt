@@ -18,8 +18,8 @@ data class Member(
 )
 
 data class Holder(
-    val dueData: String,
-    val memberId: Int
+    val name: String,
+    val memberId: String
 )
 
 data class Writer(

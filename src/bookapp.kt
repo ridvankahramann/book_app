@@ -16,7 +16,6 @@ public class Global() {
 }
 
 fun main() {
-//    Global()
     print("\n 1.kitap ekle\n 2.kitap teslim et\n 3.kitap teslim al\n 4.kitap ara \n 5.kitapları listele\n")
     val inputNumber: Int = readLine()!!.toInt()
     when(inputNumber){
@@ -66,11 +65,22 @@ fun addNewBook(){
 }
 
 fun deliverBook(){
-    print("Kullanıcı Id")
-    val userId = readLine()!!.toInt()
+    print("Kullanıcı Id\n")
+    val userId = readLine()!!.toString()
     for (i in model.books.indices){
-        if (model.writers[i].writerId == userId){
-            print(model.books[i])
+        if(model.books[i].holders[0].memberId == userId){
+            var bookname = model.books[i].name
+            var writername = model.books[i].writer
+            print("Kitap ismi: $bookname")
+            print("\n")
+            print("Yazar ismi ve Id'si: $writername")
+            print("\n")
+            print("Teslim etmek istediğin kitabın ismi: \n")
+            val getbook = readLine()!!.toString()
+            if(model.books[i].name == getbook){
+                (model.books[i].holders as ArrayList).remove(model.books[i].holders[0])
+                saveModelToFile()
+            }
         }
     }
 }
@@ -82,13 +92,39 @@ fun pickupBook(){
 fun searchBook(){
     print("Kitap İsmi\n")
     val bookName = readLine()!!.toString()
-    var filter = model.books.filter { it.name == bookName}
-    filter.forEach{print(listOf(it.holders,it.name,it.page,it.piece,it.writer))}
+    for (i in model.books.indices){
+        if (model.books[i].name == bookName){
+            var name = model.books[i].name
+            var page = model.books[i].page
+            var piece = model.books[i].piece
+            var writer = model.books[i].writer
+            print("Kitap ismi: $name")
+            print("\n")
+            print("Kitap sayfa: $page")
+            print("\n")
+            print("Kitap fiyat: $piece")
+            print("\n")
+            print("Kitap fiyat: $writer")
+        }
+    }
 }
 
 fun listBook(){
-    model.books.forEach{
-        print(listOf(it.holders,it.name,it.page,it.piece,it.writer))
+    for (i in model.books.indices){
+        var holders = model.books[i].holders
+        var name = model.books[i].name
+        var page = model.books[i].page
+        var piece = model.books[i].piece
+        var writer = model.books[i].writer
+        print("Kullanıcı bilgileri: $holders")
+        print("\n")
+        print("Kitap ismi: $name")
+        print("\n")
+        print("Kitap fiyat: $page")
+        print("\n")
+        print("Kitap fiyat: $piece")
+        print("\n")
+        print("Kitap fiyat: $writer")
     }
 }
 

@@ -1,7 +1,7 @@
 {
   "books": [
     {
-      "holders": [],
+      "holders": [ { "name": "Ebubekir Tabak","memberId": "0012"} ],
       "name": "aa",
       "page": 44,
       "piece": 21,
@@ -11,7 +11,7 @@
       }
     },
     {
-      "holders": [],
+      "holders": [ { "name": "Ridvan Kahraman", "memberId": "0013"} ],
       "name": "sadasdas",
       "page": 24,
       "piece": 14,
@@ -23,8 +23,12 @@
   ],
   "members": [
     {
-      "memberId": 12,
+      "memberId": "0012",
       "name": "Ebubekir Tabak"
+    },
+    {
+      "memberId": "0013",
+      "name": "Ridvan Kahraman"
     }
   ],
   "writers": [
