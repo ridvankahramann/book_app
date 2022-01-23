@@ -78,29 +78,34 @@ fun deliverBook(){
     print("Kullanıcı Id\n")
     val userId = readLine()!!.toString()
     for (i in model.books.indices){
-        if(model.books[i].holders[0].memberId == userId){
-            var bookname = model.books[i].name
-            var writername = model.books[i].writer
-            print("Kitap ismi: $bookname")
-            print("\n")
-            print("Yazar ismi ve Id'si: $writername")
-            print("\n")
-            print("Teslim etmek istediğin kitabın ismi: \n")
-            val getbook = readLine()!!.toString()
-            if(model.books[i].name == getbook){
-                (model.books[i].holders as ArrayList).remove(model.books[i].holders[0])
-                saveModelToFile()
-                print("Kitap Teslim Edildi.")
+        for(j in model.books[i].holders.indices){
+            if(model.books[i].holders[j].memberId == userId){
+                var bookname = model.books[i].name
+                var writername = model.books[i].writer
+                print("Kitap ismi: $bookname")
+                print("\n")
+                print("Yazar ismi ve Id'si: $writername")
+                print("\n")
+                print("Teslim etmek istediğin kitabın ismi: \n")
+                val getbook = readLine()!!.toString()
+                if(model.books[i].name == getbook){
+                    (model.books[i].holders as ArrayList).remove(model.books[i].holders[j])
+                    saveModelToFile()
+                    print("Kitap Teslim Edildi.")
+                }
+                break
             }
         }
     }
 }
 
 fun pickupBook(){
+    var listbookname = mutableListOf<String>()
     for (i in model.books.indices){
-        if(model.members.count() < model.books[i].piece){
+        if(model.books[i].holders.count() < model.books[i].piece){
             print("\n")
             print(model.books[i].name)
+            listbookname.add(model.books[i].name)
         }
     }
     print("\n")
@@ -108,12 +113,12 @@ fun pickupBook(){
     print("\n")
     var bookdeliver = readLine()!!.toString()
     for (i in model.books.indices) {
-        if (model.books[i].name == bookdeliver) {
+        if (model.books[i].name.contains(bookdeliver)) {
             print("Kullanıcı isim\n")
             var holdersname = readLine()!!.toString()
             var holdersmemberId = (0..1000).random().toString()
-            val holders = Holder(holdersname,holdersmemberId)
-            val members = Member(holdersname,holdersmemberId)
+            val holders = Holder(holdersmemberId, holdersname)
+            val members = Member(holdersmemberId, holdersname)
             (model.books[i].holders as ArrayList).add(holders)
             (model.members as ArrayList).add(members)
             saveModelToFile()
