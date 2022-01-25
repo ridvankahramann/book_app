@@ -7,13 +7,13 @@
           "memberId": "0012"
         },
         {
-          "name": "mehmet",
-          "memberId": "563"
+          "name": "Ridvan Kahraman",
+          "memberId": "0013"
         }
       ],
       "name": "aa",
       "page": 44,
-      "piece": 20,
+      "piece": 21,
       "writer": {
         "writerId": 12,
         "writerName": "Daniel Defoe"
@@ -35,12 +35,17 @@
       }
     },
     {
-      "holders": [],
+      "holders": [
+        {
+          "name": "Ridvan Kahraman",
+          "memberId": "0013"
+        }
+      ],
       "name": "Fareler ve Insanlar",
-      "page": 123,
-      "piece": 50,
+      "page": 400,
+      "piece": 20,
       "writer": {
-        "writerId": 95,
+        "writerId": 7,
         "writerName": "John Steinbeck"
       }
     }
@@ -63,6 +68,10 @@
     {
       "writerId": 12,
       "writerName": "Daniel Defoe"
+    },
+    {
+      "writerId": 7,
+      "writerName": "John Steinbeck"
     }
   ]
 }

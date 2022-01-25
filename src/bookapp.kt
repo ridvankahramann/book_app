@@ -39,7 +39,7 @@ fun addNewBook(){
     val name = readLine()!!.toString()
     print("Kitap Sayfa\n")
     val page = readLine()!!.toInt()
-    print("Kitap Fiyatı\n")
+    print("Kitap Adeti\n")
     val piece = readLine()!!.toInt()
     print("Yazar İsmi\n")
     val writerName = readLine()!!.toString()
@@ -49,7 +49,7 @@ fun addNewBook(){
             if (writer.writerName == writerName && model.books[i].name == name) {
                 val index = model.books.indexOf(model.books[i])
                 val book = Book(holders, model.books[i].name, model.books[i].page, model.books[i].piece++, writer)
-                (model.books as ArrayList)[index] = book
+                (model.books as ArrayList).apply { (book) }
                 saveModelToFile()
                 print("Kitap Güncellendi.")
                 return@forEach
@@ -64,6 +64,7 @@ fun addNewBook(){
             } else {
                 val writer = Writer(writerId,writerName)
                 val book = Book(holders,name,page,piece,writer)
+                (model.writers as ArrayList).add(writer)
                 (model.books as ArrayList).add(book)
                 GsonBuilder().setPrettyPrinting().create()
                 saveModelToFile()
@@ -77,26 +78,29 @@ fun addNewBook(){
 fun deliverBook(){
     print("Kullanıcı Id\n")
     val userId = readLine()!!.toString()
+    var holdersbookname = mutableListOf<String>()
     for (i in model.books.indices){
         for(j in model.books[i].holders.indices){
             if(model.books[i].holders[j].memberId == userId){
-                var bookname = model.books[i].name
-                var writername = model.books[i].writer
-                print("Kitap ismi: $bookname")
-                print("\n")
-                print("Yazar ismi ve Id'si: $writername")
-                print("\n")
-                print("Teslim etmek istediğin kitabın ismi: \n")
-                val getbook = readLine()!!.toString()
-                if(model.books[i].name == getbook){
-                    (model.books[i].holders as ArrayList).remove(model.books[i].holders[j])
-                    saveModelToFile()
-                    print("Kitap Teslim Edildi.")
-                }
-                break
+                holdersbookname.add(model.books[i].name)
             }
         }
     }
+    print("\n")
+    print(holdersbookname)
+    print("\n")
+    print("Teslim etmek istediğin kitabın ismi: \n")
+    val getbook = readLine()!!.toString()
+    for (i in model.books.indices){
+        for(j in model.books[i].holders.indices){
+            if(model.books[i].name == getbook && model.books[i].holders[j].memberId == userId){
+                (model.books[i].holders as ArrayList).remove(model.books[i].holders[j])
+                saveModelToFile()
+                print("Kitap Teslim Edildi.")
+            }
+        }
+    }
+
 }
 
 fun pickupBook(){
@@ -117,7 +121,7 @@ fun pickupBook(){
             print("Kullanıcı isim\n")
             var holdersname = readLine()!!.toString()
             var holdersmemberId = (0..1000).random().toString()
-            val holders = Holder(holdersmemberId, holdersname)
+            val holders = Holder(holdersname,holdersmemberId)
             val members = Member(holdersmemberId, holdersname)
             (model.books[i].holders as ArrayList).add(holders)
             (model.members as ArrayList).add(members)
@@ -140,9 +144,9 @@ fun searchBook(){
             print("\n")
             print("Kitap sayfa: $page")
             print("\n")
-            print("Kitap fiyat: $piece")
+            print("Kitap adeti: $piece")
             print("\n")
-            print("Kitap fiyat: $writer")
+            print("Yazar ismi ve Id'si: $writer")
         }
     }
 }
@@ -158,11 +162,11 @@ fun listBook(){
         print("\n")
         print("Kitap ismi: $name")
         print("\n")
-        print("Kitap fiyat: $page")
+        print("Kitap sayfası: $page")
         print("\n")
-        print("Kitap fiyat: $piece")
+        print("Kitap adeti: $piece")
         print("\n")
-        print("Kitap fiyat: $writer")
+        print("Yazar ismi ve Id'si: $writer")
     }
 }
 
